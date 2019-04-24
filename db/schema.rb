@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_04_24_130741) do
     t.string "name"
     t.string "power"
     t.string "bio"
+    t.integer "team_id"
   end
 
   create_table "teams", force: :cascade do |t|
