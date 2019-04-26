@@ -8,6 +8,11 @@ class App < Sinatra::Base
     erb :team
   end
   
+  get '/teams/:id' do
+    @team = Team.find(params[:id])
+    erb :super_hero
+  end
+  
   post '/teams' do
     team = Team.new(:name => params[:team][:name], :motto => params[:team][:motto])
     params[:team][:heroes].each do |hero_data|
@@ -15,12 +20,8 @@ class App < Sinatra::Base
       hero.team = team
       hero.save
     end
-    binding.pry
-    erb :super_hero
+    
+    redirect to "/teams/#{team.id}"
   end
   
-  get '/teams/:id'
-  
-  end
-
 end
